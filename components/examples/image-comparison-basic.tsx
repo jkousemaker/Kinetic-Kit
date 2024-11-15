@@ -1,6 +1,6 @@
 'use client';
 
-import ImageComparison from '../core/image-comparison';
+import ImageComparison from '@/components/core/image-comparison';
 export function ImageComparisonBasic() {
   return (
     <div>

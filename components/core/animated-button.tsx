@@ -216,12 +216,7 @@ const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButtonProps>(
             {loading && <SequenceLoader key='seq' />}
           </AnimatePresence>
           {shimmer && (
-            <BorderTrail
-              style={{
-                boxShadow:
-                  '0px 0px 60px 30px rgb(255 255 255 / 50%), 0 0 100px 60px rgb(0 0 0 / 50%), 0 0 140px 90px rgb(0 0 0 / 50%)',
-              }}
-              size={30}
+            <ShimmerBorder
             />
           )}
         </MotionButton>
