@@ -1,0 +1,50 @@
+export const metadata = {
+  title: 'Gooey Button - Kinetic-Kit',
+  description:
+    'A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.',
+};
+
+import { GooeyButton } from '@/components/core/gooey-button';
+import { GooeyButtonBasic } from '@/components/examples/gooey-button-basic';
+import { GooeyButtonCustomIcon } from '@/components/examples/gooey-button-custom-icon';
+import ComponentCodePreview from '@/components/website/component-code-preview';
+import CodeBlock from '@/components/website/code-block';
+
+# Gooey Button
+
+A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.
+
+## Examples
+
+### Basic
+
+<ComponentCodePreview
+  component={<GooeyButtonBasic />}
+  filePath='examples/gooey-button-basic'
+  hasReTrigger
+/>
+
+### Custom Icon
+
+<ComponentCodePreview
+  component={<GooeyButtonCustomIcon />}
+  filePath='examples/gooey-button-custom-icon'
+  hasReTrigger
+/>
+
+## Code
+
+<CodeBlock filePath='components/core/gooey-button.tsx' />
+
+## Component API
+
+### GooeyButton
+
+| Prop        | Type                          | Default                       | Description                                                                     |
+| :---------- | :---------------------------- | :---------------------------- | :------------------------------------------------------------------------------ |
+| children    | ReactNode                     |                               | The content to display in the button.                                           |
+| asChild     | boolean                       | false                         | Replaces the button tag with the provided child.                                |
+| icon        | ReactElement                  | `<ArrowBigRight size={28} />` | Colors for the waves that animate on hover.                                     |
+| prependIcon | boolean                       | false                         | The visual style of the button.                                                 |
+| size        | 'default' \| 'large'          | 'default'                     | The size of the button, with 'large' being bigger.                              |
+| ref         | `Ref<Button or Link Element>` |                               | Provides a reference to the button or link DOM element, depending on `asChild`. |

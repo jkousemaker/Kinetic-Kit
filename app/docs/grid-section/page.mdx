@@ -1,0 +1,41 @@
+export const metadata = {
+  title: 'Grid Section - Kinetic-Kit',
+  description:
+    'A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.',
+};
+
+import { GridSection } from '@/components/core/grid-section';
+import { GridSectionBasic } from '@/components/examples/grid-section-basic';
+import ComponentCodePreview from '@/components/website/component-code-preview';
+import CodeBlock from '@/components/website/code-block';
+
+# Grid Section
+
+A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.
+
+## Examples
+
+### Basic
+
+<ComponentCodePreview
+  component={<GridSectionBasic />}
+  filePath='examples/grid-section-basic'
+  hasReTrigger
+/>
+
+## Code
+
+<CodeBlock filePath='components/core/grid-section.tsx' />
+
+## Component API
+
+### GridSection
+
+| Prop        | Type                          | Default                       | Description                                                                     |
+| :---------- | :---------------------------- | :---------------------------- | :------------------------------------------------------------------------------ |
+| children    | ReactNode                     |                               | The content to display in the button.                                           |
+| asChild     | boolean                       | false                         | Replaces the button tag with the provided child.                                |
+| icon        | ReactElement                  | `<ArrowBigRight size={28} />` | Colors for the waves that animate on hover.                                     |
+| prependIcon | boolean                       | false                         | The visual style of the button.                                                 |
+| size        | 'default' \| 'large'          | 'default'                     | The size of the button, with 'large' being bigger.                              |
+| ref         | `Ref<Button or Link Element>` |                               | Provides a reference to the button or link DOM element, depending on `asChild`. |

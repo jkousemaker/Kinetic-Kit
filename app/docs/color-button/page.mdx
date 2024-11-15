@@ -1,0 +1,41 @@
+export const metadata = {
+  title: 'Color Button - Kinetic-Kit',
+  description:
+    'A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.',
+};
+
+import { ColorButton } from '@/components/core/color-button';
+import { ColorButtonBasic } from '@/components/examples/color-button-basic';
+import ComponentCodePreview from '@/components/website/component-code-preview';
+import CodeBlock from '@/components/website/code-block';
+
+# Color Button
+
+A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.
+
+## Usage
+
+### Apple style dock
+
+<ComponentCodePreview
+  component={<ColorButtonBasic />}
+  filePath='examples/color-button-basic'
+  hasReTrigger
+/>
+
+## Code
+
+<CodeBlock filePath='components/core/color-button.tsx' />
+
+## Component API
+
+### ColorButton
+
+| Prop     | Type                           | Default                           | Description                                                                     |
+| :------- | :----------------------------- | :-------------------------------- | :------------------------------------------------------------------------------ |
+| children | ReactNode                      |                                   | The content to display in the button.                                           |
+| asChild  | boolean                        | false                             | Replaces the button tag with the provided child.                                |
+| bgColors | string[]                       | ['#a374ff', '#17f1d1', '#ffd074'] | Colors for the waves that animate on hover.                                     |
+| variant  | 'default' \| 'light' \| 'dark' | 'default'                         | The visual style of the button.                                                 |
+| size     | 'default' \| 'large'           | 'default'                         | The size of the button, with 'large' being bigger.                              |
+| ref      | `Ref<Button or Link Element>`  |                                   | Provides a reference to the button or link DOM element, depending on `asChild`. |
