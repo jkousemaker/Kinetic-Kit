@@ -10,7 +10,6 @@ import {
   type HTMLMotionProps,
 } from 'framer-motion';
 
-import { BorderTrail } from '@/components/core/border-trail';
 const animatedButtonVariants = cva(
   'inline-flex overflow-hidden relative items-center justify-center gap-2 whitespace-nowrap  transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
   {
