@@ -5,9 +5,12 @@ import GitHubIcon from '@/components/website/icons/github';
 import ThemeSwitch from '@/components/website/theme-switch';
 import { ChevronRight } from 'lucide-react';
 import { CardExampleLanding } from '@/components/website/card-example-landing';
-import { ImageComparisonBasic } from '@/components/examples/image-comparison-basic';
-import { GooeyButtonBasic } from '@/components/examples/gooey-button-basic';
-import { GridSectionBasic } from '@/components/examples/grid-section-basic';
+import { ImageComparisonBasic } from '@/app/docs/image-comparison/image-comparison-basic';
+import { GooeyButtonBasic } from '@/app/docs/gooey-button/gooey-button-basic';
+import { GridSectionBasic } from '@/app/docs/grid-section/grid-section-basic';
+
+import { DynamicBarBasic } from '@/app/docs/dynamic-bar/dynamic-bar-basic';
+import { FeautureList } from '@/components/core/feauture-list';
 
 function Button({
   children,
@@ -85,7 +88,11 @@ export default function Motion() {
             Free updates and new components released regularly.
           </span>
         </section>
-
+        <div className='h-screen'></div>
+        <FeautureList />
+        <section className='mx-auto max-w-3xl py-32'>
+          <DynamicBarBasic />
+        </section>
         <section className='mx-auto max-w-3xl py-32'>
           <CardExampleLanding hasReTrigger>
             <ImageComparisonBasic />

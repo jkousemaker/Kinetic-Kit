@@ -1,85 +1,93 @@
-'use client';
 import * as React from 'react';
-import {
-  AnimatePresence,
-  Transition,
-  Variant,
-  motion,
-  MotionProps,
-} from 'framer-motion';
+import { Slot, Slottable } from '@radix-ui/react-slot';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
-import { Slot } from '@radix-ui/react-slot';
-import { ArrowBigRight } from 'lucide-react';
+import { ArrowRightIcon } from 'lucide-react';
 
-interface GooeyIconProps {
-  children: React.ReactNode;
-  prependIcon?: boolean;
-}
-
-const GooeyIcon = React.forwardRef<HTMLDivElement, GooeyIconProps>(
-  ({ children, prependIcon = false }, ref) => {
-    return (
-      <>
-        <div
-          className={cn(
-            'absolute inset-0 z-[-10] flex size-full justify-end',
-            prependIcon && '!justify-start'
-          )}
-        >
-          <motion.div
-            variants={{
-              initial: { x: '0%' },
-              hover: { x: prependIcon ? '-130%' : '130%' },
-            }}
-            transition={{ type: 'spring', duration: 2 }}
-            className='relative flex aspect-square h-full w-auto items-center justify-center rounded-xl bg-black text-white'
-            ref={ref}
-          >
-            {children}
-          </motion.div>
-        </div>
-      </>
-    );
+const gooeyButtonVariants = cva(
+  'group relative  inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  {
+    variants: {
+      variant: {
+        default: ' text-white bg-zinc-700   hover:bg-zinc-700/90',
+        destructive: 'bg-red-700 text-white hover:bg-red-700/90',
+        outline:
+          'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
+        secondary:
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: ' text-zinc-700 border-2 border-black bg-white underline-black underline-offset-4 hover:underline',
+      },
+      size: {
+        default:
+          'h-9 rounded-xs px-4 py-2 text-md font-senibold leading-2 tracking-wide',
+        sm: 'h-9 rounded-sm px-3',
+        lg: 'h-14 rounded-md px-5 py-3 text-lg font-bold leading-5 tracking-wide',
+        xl: 'h-16 rounded-xl px-6 py-5 text-xl font-bold leading-10',
+        icon: 'h-10 w-10',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'lg',
+    },
   }
 );
 
-interface GooeyButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon?: React.ReactElement<{ size?: number }>;
-  prependIcon?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+interface IconProps {
+  Icon?: React.ElementType;
+  iconPlacement?: 'left' | 'right';
 }
 
-const GooeyButton = React.forwardRef<HTMLButtonElement, GooeyButtonProps>(
+interface IconRefProps {
+  Icon?: never;
+  iconPlacement?: undefined;
+}
+
+export interface GooeyButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof gooeyButtonVariants> {
+  asChild?: boolean;
+}
+
+export type GooeyButtonIconProps = IconProps | IconRefProps;
+
+const GooeyButton = React.forwardRef<
+  HTMLButtonElement,
+  GooeyButtonProps & GooeyButtonIconProps
+>(
   (
     {
-      children,
       className,
-      icon = <ArrowBigRight size={28} />,
-      prependIcon = false,
-      onClick,
+      variant,
+      size,
+      asChild = false,
+      Icon = ArrowRightIcon,
+      iconPlacement = 'right',
+      ...props
     },
     ref
   ) => {
+    const Comp = asChild ? Slot : 'button';
     return (
-      <>
-        <div className='flex h-full w-full items-center justify-center [filter:_url(#gooey)]'>
-          <motion.button
-            initial='initial'
-            animate='animate'
-            whileHover='hover'
-            className={cn(
-              'relative inline-flex h-16 items-center rounded-xl bg-black px-6 py-0 text-xl font-bold leading-5 text-gray-200',
-              className
-            )}
-            onClick={onClick}
-            ref={ref}
-          >
-            {children}
-            <GooeyIcon prependIcon={prependIcon}>{icon}</GooeyIcon>
-          </motion.button>
-        </div>
-
+      <div className='flex size-full items-center justify-center [filter:_url(#gooey)]'>
+        <Comp
+          className={cn(gooeyButtonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {Icon && iconPlacement === 'left' && (
+            <div className='absolute left-0 -z-10 grid aspect-square h-full w-auto translate-x-0 place-items-center rounded-[inherit] bg-inherit [transition:_all_1s_cubic-bezier(0.64,0.23,0.26,0.87)] group-hover:-translate-x-[130%]'>
+              <Icon />
+            </div>
+          )}
+          <Slottable>{props.children}</Slottable>
+          {Icon && iconPlacement === 'right' && (
+            <div className='absolute right-0 -z-10 grid aspect-square h-full w-auto translate-x-0 place-items-center rounded-[inherit] bg-inherit [transition:_all_1s_cubic-bezier(0.64,0.23,0.26,0.87)] group-hover:translate-x-[130%]'>
+              <Icon />
+            </div>
+          )}
+        </Comp>
         <svg
           className='absolute hidden'
           width='0'
@@ -104,9 +112,10 @@ const GooeyButton = React.forwardRef<HTMLButtonElement, GooeyButtonProps>(
             </filter>
           </defs>
         </svg>
-      </>
+      </div>
     );
   }
 );
 GooeyButton.displayName = 'GooeyButton';
-export { GooeyButton };
+
+export { GooeyButton, gooeyButtonVariants };

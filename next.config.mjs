@@ -6,7 +6,7 @@ import { remarkCodeHike } from '@code-hike/mdx';
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [{ hostname: 'images.unsplash.com' }],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 };

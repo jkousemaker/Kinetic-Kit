@@ -1,12 +1,9 @@
-'use client';
 import { GooeyButton } from '@/components/core/gooey-button';
 import { ArrowBigDownDash } from 'lucide-react';
-import Link from 'next/link';
-
-export function GooeyButtonLink() {
+export function GooeyButtonCustomIcon() {
   return (
-    <GooeyButton>
-      <Link href='/'>hover me</Link>
+    <GooeyButton Icon={ArrowBigDownDash} iconPlacement='left'>
+      hover me
     </GooeyButton>
   );
 }

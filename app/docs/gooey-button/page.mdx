@@ -4,9 +4,9 @@ export const metadata = {
     'A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.',
 };
 
-import { GooeyButton } from '@/components/core/gooey-button';
-import { GooeyButtonBasic } from '@/components/examples/gooey-button-basic';
-import { GooeyButtonCustomIcon } from '@/components/examples/gooey-button-custom-icon';
+import { GooeyButtonBasic } from './gooey-button-basic';
+import { GooeyButtonCustomIcon } from './gooey-button-custom-icon';
+import { GooeyButtonLink } from './gooey-button-link';
 import ComponentCodePreview from '@/components/website/component-code-preview';
 import CodeBlock from '@/components/website/code-block';
 
@@ -20,7 +20,7 @@ A versatile UI element that provides a flexible and customizable way to organize
 
 <ComponentCodePreview
   component={<GooeyButtonBasic />}
-  filePath='examples/gooey-button-basic'
+  filePath='app/docs/gooey-button/gooey-button-basic.tsx'
   hasReTrigger
 />
 
@@ -28,8 +28,18 @@ A versatile UI element that provides a flexible and customizable way to organize
 
 <ComponentCodePreview
   component={<GooeyButtonCustomIcon />}
-  filePath='examples/gooey-button-custom-icon'
-  hasReTrigger
+
+filePath='app/docs/gooey-button/gooey-button-custom-icon.tsx'
+hasReTrigger
+/>
+
+### asChild Link
+
+<ComponentCodePreview
+  component={<GooeyButtonLink />}
+
+filePath='app/docs/gooey-button/gooey-button-link.tsx'
+hasReTrigger
 />
 
 ## Code
@@ -40,11 +50,14 @@ A versatile UI element that provides a flexible and customizable way to organize
 
 ### GooeyButton
 
-| Prop        | Type                          | Default                       | Description                                                                     |
-| :---------- | :---------------------------- | :---------------------------- | :------------------------------------------------------------------------------ |
-| children    | ReactNode                     |                               | The content to display in the button.                                           |
-| asChild     | boolean                       | false                         | Replaces the button tag with the provided child.                                |
-| icon        | ReactElement                  | `<ArrowBigRight size={28} />` | Colors for the waves that animate on hover.                                     |
-| prependIcon | boolean                       | false                         | The visual style of the button.                                                 |
-| size        | 'default' \| 'large'          | 'default'                     | The size of the button, with 'large' being bigger.                              |
-| ref         | `Ref<Button or Link Element>` |                               | Provides a reference to the button or link DOM element, depending on `asChild`. |
+| Prop          | Type                                                                                      | Default              | Description                                      |
+| :------------ | :---------------------------------------------------------------------------------------- | :------------------- | :----------------------------------------------- |
+| children      | React.ReactNode                                                                           |                      | The content to display in the button.            |
+| asChild       | boolean                                                                                   | false                | Replaces the button tag with the provided child. |
+| Icon          | React.ElementType                                                                         | `<ArrowRightIcon />` | The icon to display in the button.               |
+| iconPlacement | 'left' \| 'right'                                                                         | 'right'              | The placement of the icon in the button.         |
+| variant       | 'default' \| 'destructive' <br /> \| 'outline' \| 'secondary' <br /> \| 'ghost' \| 'link' | 'default'            | The visual style of the button.                  |
+| size          | 'default' \| 'sm' <br /> \| 'lg' \| 'icon'                                                | 'default'            | The size of the button.                          |
+| ref           | `React.Ref<HTMLButtonElement>`                                                            |                      | Provides a reference to the button DOM element.  |
+| className     | string                                                                                    |                      | Additional classes to apply to the button.       |
+| ...props      | `HTMLButtonElement`                                                                       |                      | Additional props to pass to the button element.  |

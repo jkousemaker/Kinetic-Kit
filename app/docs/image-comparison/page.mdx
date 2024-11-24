@@ -4,27 +4,28 @@ export const metadata = {
     'A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.',
 };
 
-import ImageComparison from '@/components/core/image-comparison';
+import { ImageComparisonBasic } from './image-comparison-basic';
 import ComponentCodePreview from '@/components/website/component-code-preview';
 import CodeBlock from '@/components/website/code-block';
 
-# Image Comparison
+# Animated Button
 
 A versatile UI element that provides a flexible and customizable way to organize and display menu items within your application.
 
-## Examples
+## Usage
 
-### Basic
+### Apple style dock
 
 <ComponentCodePreview
-  component={<ImageComparison />}
-  filePath='examples/image-comparison-basic'
+  component={<ImageComparisonBasic />}
+  filePath='app/docs/image-comparison/image-comparison-basic.tsx'
   hasReTrigger
 />
 
 ## Code
 
 <CodeBlock filePath='components/core/image-comparison.tsx' />
+
 
 ## Component API
 
