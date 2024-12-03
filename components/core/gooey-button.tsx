@@ -3,6 +3,7 @@ import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { ArrowRightIcon } from 'lucide-react';
+import { Transition, Variant } from 'framer-motion';
 
 const gooeyButtonVariants = cva(
   'group relative  inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
@@ -47,8 +48,19 @@ interface IconRefProps {
 export interface GooeyButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof gooeyButtonVariants> {
+  containerClassName?: string;
   asChild?: boolean;
+  variants?: {
+    hidden: Variant;
+    visible: Variant;
+  };
+  transition?: Transition;
 }
+
+const defaultVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
 
 export type GooeyButtonIconProps = IconProps | IconRefProps;
 
@@ -59,18 +71,26 @@ const GooeyButton = React.forwardRef<
   (
     {
       className,
+      containerClassName,
       variant,
       size,
       asChild = false,
       Icon = ArrowRightIcon,
       iconPlacement = 'right',
+      variants = defaultVariants,
+      transition,
       ...props
     },
     ref
   ) => {
     const Comp = asChild ? Slot : 'button';
     return (
-      <div className='flex size-full items-center justify-center [filter:_url(#gooey)]'>
+      <div
+        className={cn(
+          'flex size-full items-center justify-center [filter:_url(#gooey)]',
+          containerClassName
+        )}
+      >
         <Comp
           className={cn(gooeyButtonVariants({ variant, size, className }))}
           ref={ref}
