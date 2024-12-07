@@ -64,6 +64,11 @@ const NAVIGATION: NavigationGroup[] = [
         name: 'Image Comparison',
         href: '/docs/image-comparison',
       },
+      {
+        name: 'Scroll Transform',
+        href: '/docs/scroll-transform',
+        isNew: true,
+      },
     ],
   },
   {
